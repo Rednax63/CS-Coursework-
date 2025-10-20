@@ -1,12 +1,23 @@
 import pygame
+import pygame_gui
 import sys
 
 pygame.init()
 
-#set up empty window
+#set window
 WIDTH, HEIGHT = 800, 600
 window = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption("Empty Window")
+pygame.display.set_caption("The Game")
+
+manager = pygame_gui.UIManager((WIDTH,HEIGHT)) #creates ui manager
+
+#creates submit button
+button_rect = pygame.Ret((WIDTH - 130, HEIGHT - 70), (100,40))
+button = pygame_gui.elements.UIButton(
+    relative_rect = button_rect, 
+    text = 'Submit',
+    manager = manager
+)
 
 #game loop - keeps game updating until close
 running = True
@@ -15,7 +26,6 @@ while running:
         if event.type == pygame.QUIT:
             running = False
 
-    window.fill((0, 0, 0))  #empty window
     pygame.display.flip()   #update window
 
 #quit game
