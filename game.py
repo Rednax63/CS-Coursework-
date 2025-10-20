@@ -40,7 +40,7 @@ while running:
         manager.process_events(event)
     
     manager.update(time_delta) #updates gui 
-    window.fill((0, 0, 0))  # clears screen
+    window.fill((99, 107, 47)) 
     manager.draw_ui(window) # draws gui elementw
     pygame.display.flip()   #updates window
 
