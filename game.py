@@ -4,7 +4,7 @@ import sys
 
 pygame.init()
 
-#set window
+#setup window
 WIDTH, HEIGHT = 800, 600
 window = pygame.display.set_mode((WIDTH, HEIGHT), pygame.RESIZABLE)
 pygame.display.set_caption("The Game")
@@ -12,11 +12,12 @@ pygame.display.set_caption("The Game")
 manager = pygame_gui.UIManager((WIDTH,HEIGHT)) #creates ui manager
 
 #creates submit button
-button_rect = pygame.Rect((WIDTH - 130, HEIGHT - 70), (100,40))
+button_rect = pygame.Rect(0,0,150,50)
 button = pygame_gui.elements.UIButton(
     relative_rect = button_rect, 
     text = 'Submit',
-    manager = manager
+    manager = manager,
+    anchors={'center': 'center'}
 )
 
 clock = pygame.time.Clock()
