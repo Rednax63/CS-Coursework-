@@ -12,13 +12,29 @@ pygame.display.set_caption("The Game")
 manager = pygame_gui.UIManager((WIDTH,HEIGHT)) #creates ui manager
 
 #creates submit button
-button_rect = pygame.Rect(0,0,150,50)
+button_rect = pygame.Rect(0,40,150,45)
 button = pygame_gui.elements.UIButton(
     relative_rect = button_rect, 
     text = 'Submit',
     manager = manager,
-    anchors={'center': 'center'}
+    anchors={'centerx': 'centerx', 'centery': 'centery'}
 )
+#username input box
+userinput_rect = pygame.Rect(0,-70,300,40)
+userinput = pygame_gui.elements.UITextEntryLine(
+    relative_rect = userinput_rect,
+    manager = manager,
+    anchors={'centerx': 'centerx', 'centery' : 'centery'}
+)
+userinput.set_text("Username")
+#password input box
+passwordinput_rect = pygame.Rect(0,-20,300,40)
+passwordinput = pygame_gui.elements.UITextEntryLine(
+    relative_rect = passwordinput_rect,
+    manager = manager,
+    anchors={'centerx': 'centerx', 'centery' : 'centery'}
+)
+passwordinput.set_text("Password")
 
 clock = pygame.time.Clock()
 fullscreen = False
