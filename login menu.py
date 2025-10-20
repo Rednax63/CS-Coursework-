@@ -34,6 +34,7 @@ passwordinput = pygame_gui.elements.UITextEntryLine(
     manager = manager,
     anchors={'centerx': 'centerx', 'centery' : 'centery'}
 )
+passwordinput.set_text_hidden(True) #hides the password
 passwordinput.set_text("Password")
 
 clock = pygame.time.Clock()
