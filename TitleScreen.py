@@ -7,10 +7,27 @@ pygame.init()
 #setup window
 WIDTH, HEIGHT = 800, 600
 window = pygame.display.set_mode((WIDTH, HEIGHT), pygame.RESIZABLE)
-pygame.display.set_caption("The Game")
+pygame.display.set_caption("Title Screen")
 
 manager = pygame_gui.UIManager((WIDTH,HEIGHT)) #creates ui manager
 
+#creates log in button
+button_rect = pygame.Rect(100,150,150,45)
+button = pygame_gui.elements.UIButton(
+    relative_rect = button_rect, 
+    text = 'Log In',
+    manager = manager,
+    anchors={'centerx': 'centerx', 'centery': 'centery'}
+)
+
+#creates sign up button
+button_rect = pygame.Rect(-100,150,150,45)
+button = pygame_gui.elements.UIButton(
+    relative_rect = button_rect, 
+    text = 'Sign Up',
+    manager = manager,
+    anchors={'centerx': 'centerx', 'centery': 'centery'}
+)
 
 clock = pygame.time.Clock()
 fullscreen = False
