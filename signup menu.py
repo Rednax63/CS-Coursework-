@@ -37,7 +37,7 @@ passwordinput = pygame_gui.elements.UITextEntryLine(
 passwordinput.set_text_hidden(True) #hides the password
 passwordinput.set_text("Password")
 
-#password input box
+#checkpassword input box
 checkpasswordinput_rect = pygame.Rect(0,0,300,40)
 checkpasswordinput = pygame_gui.elements.UITextEntryLine(
     relative_rect = checkpasswordinput_rect,
@@ -63,6 +63,7 @@ while running:
             window = pygame.display.set_mode((WIDTH, HEIGHT), pygame.RESIZABLE)
             manager.set_window_resolution((WIDTH, HEIGHT))
 
+        #tests username and password inputs by printing them out
         if event.type == pygame_gui.UI_BUTTON_PRESSED:
             if event.ui_element == button: 
                 username = userinput.get_text()
@@ -74,7 +75,7 @@ while running:
     
     manager.update(time_delta) #updates gui 
     window.fill((99, 150, 47)) 
-    manager.draw_ui(window) # draws gui elementw
+    manager.draw_ui(window) # draws gui elements
     pygame.display.flip()   #updates window
 
 #quit game
