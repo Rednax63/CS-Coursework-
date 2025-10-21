@@ -54,11 +54,17 @@ while running:
             window = pygame.display.set_mode((WIDTH, HEIGHT), pygame.RESIZABLE)
             manager.set_window_resolution((WIDTH, HEIGHT))
 
+        if event.type == pygame_gui.UI_BUTTON_PRESSED:
+            if event.ui_element == button: 
+                username = userinput.get_text()
+                password = passwordinput.get_text()
+                print(f"Username: {username}")
+                print(f"Password: {password}")
 
         manager.process_events(event)
     
     manager.update(time_delta) #updates gui 
-    window.fill((99, 107, 47)) 
+    window.fill((99, 150, 47)) 
     manager.draw_ui(window) # draws gui elementw
     pygame.display.flip()   #updates window
 
