@@ -3,10 +3,10 @@ import pygame_gui
 
 #imports screens and menus
 from TitleScreen import TitleScreen
-from LoginMenu import LoginMenu 
-from SignupMenu import SignupMenu 
+from LoginMenu import LoginScreen
+from SignupMenu import SignupScreen
 
-pygame.init
+pygame.init()
 
 #sets up window
 WIDTH, HEIGHT = 800, 600 
@@ -14,7 +14,6 @@ window = pygame.display.set_mode((WIDTH, HEIGHT), pygame.RESIZABLE)
 pygame.display.set_caption("Untitled")
 
 manager = pygame_gui.UIManager((WIDTH, HEIGHT))
-
 clock = pygame.time.Clock()
 running = True
 
@@ -27,23 +26,25 @@ while running:
         if event.type == pygame.QUIT: 
             running = False 
 
-        elif event.type == pygame.VIDEORESIZE: 
-            WIDTH, HEIGHT = event.w, event.h 
-            window = pygame.display.set_mode((WIDTH, HEIGHT), pygame.RESIZABLE)
-            manager.set_window_resolution((WIDTH, HEIGHT))
-            current_screen.on_resize(WIDTH, HEIGHT)
-
         #current screen handles all events 
         next_screen = current_screen.handle_event(event)
-        #switches screens
-        if next_screen: 
-            current_screen = next_screen
-    
+
+        #switches between screens
+        if next_screen == "login":
+            manager.clear_and_reset()
+            current_screen = LoginScreen(window, manager)
+
+        elif next_screen == "signup":
+            manager.clear_and_reset()
+            current_screen = SignupScreen(window, manager)
+
+        elif next_screen == "title":
+            manager.clear_and_reset()
+            current_screen = TitleScreen(window, manager)
+
     current_screen.update(time_delta)
     window.fill((99, 150, 47))
     current_screen.draw(window)
     pygame.display.flip()
 
 pygame.quit()
-
-
