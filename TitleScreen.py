@@ -11,6 +11,11 @@ pygame.display.set_caption("Title Screen")
 
 manager = pygame_gui.UIManager((WIDTH,HEIGHT)) #creates ui manager
 
+#adds title test
+font = pygame.font.SysFont("Arial", 96, bold = True)
+title = font.render("Untitled", True, (0,0,0))
+title_rect = title.get_rect(center=(WIDTH // 2, HEIGHT // 3 ))
+
 #creates log in button
 button_rect = pygame.Rect(100,150,150,45)
 button = pygame_gui.elements.UIButton(
@@ -43,6 +48,7 @@ while running:
         #handles window resizing
         elif event.type == pygame.VIDEORESIZE: 
             WIDTH, HEIGHT = event.w, event.h
+            title_rect = title.get_rect(center=(WIDTH // 2, HEIGHT // 3))
             window = pygame.display.set_mode((WIDTH, HEIGHT), pygame.RESIZABLE)
             manager.set_window_resolution((WIDTH, HEIGHT))
 
@@ -50,6 +56,7 @@ while running:
     
     manager.update(time_delta) #updates gui 
     window.fill((99, 150, 47)) 
+    window.blit(title, title_rect) #displays title
     manager.draw_ui(window) # draws gui elements
     pygame.display.flip()   #updates window
 
