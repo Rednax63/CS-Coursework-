@@ -34,6 +34,8 @@ class TitleScreen:
 
     def handle_event(self, event): #handles input and next screen
         #handles window resizing
+        self.manager.process_events(event)
+
         if event.type == pygame.VIDEORESIZE: 
             self.WIDTH, self.HEIGHT = event.w, event.h
             self.title_rect = self.title.get_rect(center=(self.WIDTH // 2, self.HEIGHT // 3))
