@@ -6,7 +6,15 @@ class LoginScreen:
         self.window = window 
         self.manager = manager  #creates ui manager
         self.WIDTH, self.HEIGHT = window.get_size()
-        
+
+        #creates back button
+        backbutton_rect = pygame.Rect(0,0,150,45)
+        self.backbutton = pygame_gui.elements.UIButton(
+            relative_rect = backbutton_rect, 
+            text = 'Back',
+            manager = self.manager,
+        )
+
         #creates submit button
         submitbutton_rect = pygame.Rect(0,40,150,45)
         self.submitbutton = pygame_gui.elements.UIButton(
@@ -49,6 +57,8 @@ class LoginScreen:
                 print(f"Password: {password}")
                 #opens window if username and password correct
                 #return "title"
+            elif event.ui_element == self.backbutton:
+                return "title"
 
         return None 
     

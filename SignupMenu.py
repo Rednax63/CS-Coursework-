@@ -7,6 +7,14 @@ class SignupScreen:
         self.manager = manager 
         self.WIDTH, self.HEIGHT = window.get_size()
 
+        #creates back button
+        backbutton_rect = pygame.Rect(0,0,150,45)
+        self.backbutton = pygame_gui.elements.UIButton(
+            relative_rect = backbutton_rect, 
+            text = 'Back',
+            manager = self.manager,
+        )
+
         #creates submit button
         submitbutton_rect = pygame.Rect(0,70,150,45)
         self.submitbutton = pygame_gui.elements.UIButton(
@@ -61,6 +69,9 @@ class SignupScreen:
                     return "login" #loads login page
                 else:
                     print(F"Passwords do not match")
+
+            elif event.ui_element == self.backbutton:
+                return "title"
 
         return None 
     
