@@ -1,82 +1,73 @@
 import pygame
 import pygame_gui
-import sys
 
-pygame.init()
+class SignupScreen: 
+    def __init__(self, window, manager):
+        self.window = window 
+        self.manager = manager 
+        self.WIDTH, self.HEIGHT = window.get_size()
 
-#setup window
-WIDTH, HEIGHT = 800, 600
-window = pygame.display.set_mode((WIDTH, HEIGHT), pygame.RESIZABLE)
-pygame.display.set_caption("Sign Up Window")
+        #creates submit button
+        submitbutton_rect = pygame.Rect(0,70,150,45)
+        self.submitbutton = pygame_gui.elements.UIButton(
+            relative_rect = submitbutton_rect, 
+            text = 'Submit',
+            manager = self.manager,
+            anchors={'centerx': 'centerx', 'centery': 'centery'}
+        )
+        #username input box
+        userinput_rect = pygame.Rect(0,-120,300,40)
+        self.userinput = pygame_gui.elements.UITextEntryLine(
+            relative_rect = userinput_rect,
+            manager = self.manager,
+            anchors={'centerx': 'centerx', 'centery' : 'centery'}
+        )
+        self.userinput.set_text("Username")
+        #password input box
+        passwordinput_rect = pygame.Rect(0,-60,300,40)
+        self.passwordinput = pygame_gui.elements.UITextEntryLine(
+            relative_rect = passwordinput_rect,
+            manager = self.manager,
+            anchors={'centerx': 'centerx', 'centery' : 'centery'}
+        )
+        self.passwordinput.set_text("Password")
 
-manager = pygame_gui.UIManager((WIDTH,HEIGHT)) #creates ui manager
+        #checkpassword input box
+        checkpasswordinput_rect = pygame.Rect(0,0,300,40)
+        self.checkpasswordinput = pygame_gui.elements.UITextEntryLine(
+            relative_rect = checkpasswordinput_rect,
+            manager = self.manager,
+            anchors={'centerx': 'centerx', 'centery' : 'centery'}
+        )
+        self.checkpasswordinput.set_text("Re-enter Password")
 
-#creates submit button
-button_rect = pygame.Rect(0,70,150,45)
-button = pygame_gui.elements.UIButton(
-    relative_rect = button_rect, 
-    text = 'Submit',
-    manager = manager,
-    anchors={'centerx': 'centerx', 'centery': 'centery'}
-)
-#username input box
-userinput_rect = pygame.Rect(0,-120,300,40)
-userinput = pygame_gui.elements.UITextEntryLine(
-    relative_rect = userinput_rect,
-    manager = manager,
-    anchors={'centerx': 'centerx', 'centery' : 'centery'}
-)
-userinput.set_text("Username")
-#password input box
-passwordinput_rect = pygame.Rect(0,-60,300,40)
-passwordinput = pygame_gui.elements.UITextEntryLine(
-    relative_rect = passwordinput_rect,
-    manager = manager,
-    anchors={'centerx': 'centerx', 'centery' : 'centery'}
-)
-passwordinput.set_text("Password")
-
-#checkpassword input box
-checkpasswordinput_rect = pygame.Rect(0,0,300,40)
-checkpasswordinput = pygame_gui.elements.UITextEntryLine(
-    relative_rect = checkpasswordinput_rect,
-    manager = manager,
-    anchors={'centerx': 'centerx', 'centery' : 'centery'}
-)
-checkpasswordinput.set_text("Re-enter Password")
-
-clock = pygame.time.Clock()
-fullscreen = False
-running = True
-
-#game loop 
-while running:
-    time_delta = clock.tick(60)/1000
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
-
+    def handle_event(self, event):
+        self.manager.process_events(event)
         #handles window resizing
-        elif event.type == pygame.VIDEORESIZE: 
-            WIDTH, HEIGHT = event.w, event.h
-            window = pygame.display.set_mode((WIDTH, HEIGHT), pygame.RESIZABLE)
-            manager.set_window_resolution((WIDTH, HEIGHT))
+        if event.type == pygame.VIDEORESIZE: 
+            self.WIDTH, self.HEIGHT = event.w, event.h
+            self.window = pygame.display.set_mode((self.WIDTH, self.HEIGHT), pygame.RESIZABLE)
+            self.manager.set_window_resolution((self.WIDTH, self.HEIGHT))
 
         #tests username and password inputs by printing them out
         if event.type == pygame_gui.UI_BUTTON_PRESSED:
-            if event.ui_element == button: 
-                username = userinput.get_text()
-                password = passwordinput.get_text()
-                print(f"Username: {username}")
-                print(f"Password: {password}")
+            if event.ui_element == self.submitbutton: 
+                username = self.userinput.get_text()
+                password = self.passwordinput.get_text()
+                check = self.checkpasswordinput.get_text()
 
-        manager.process_events(event)
+                if password == check:
+                    print(f"Account created")
+                    return "login" #loads login page
+                else:
+                    print(F"Passwords do not match")
+
+        return None 
     
-    manager.update(time_delta) #updates gui 
-    window.fill((99, 150, 47)) 
-    manager.draw_ui(window) # draws gui elements
-    pygame.display.flip()   #updates window
+    def update(self, time_delta):
+        self.manager.update(time_delta) #updates gui 
 
-#quit game
-pygame.quit()
-sys.exit()
+    def draw(self,window):
+        window.fill((99, 150, 47)) 
+        self.manager.draw_ui(window) # draws gui elements
+
