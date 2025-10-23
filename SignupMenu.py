@@ -8,11 +8,12 @@ class SignupScreen:
         self.WIDTH, self.HEIGHT = window.get_size()
 
         #creates back button
-        backbutton_rect = pygame.Rect(0,0,150,45)
+        backbutton_rect = pygame.Rect(15,15,90,35)
         self.backbutton = pygame_gui.elements.UIButton(
             relative_rect = backbutton_rect, 
             text = 'Back',
             manager = self.manager,
+            object_id=pygame_gui.core.ObjectID('#back_button')
         )
 
         #creates submit button

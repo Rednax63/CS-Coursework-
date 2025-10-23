@@ -1,0 +1,21 @@
+{
+    "button": {
+        "colours": {
+            "normal_bg": "#2E8B57",
+            "hovered_bg": "#3CB371",
+            "pressed_bg": "#006400"
+        },
+        "misc": {
+            "shape": "rounded_rectangle",
+            "border_width": 2,
+            "border_colour": "#004d00"
+        }
+    },
+    "#back_button": {
+        "colours": {
+            "normal_bg": "#e32d05",
+            "hovered_bg": "#5A9BD6",
+            "pressed_bg": "#3B6F92"
+        }
+    }
+}

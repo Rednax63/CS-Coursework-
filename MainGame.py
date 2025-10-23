@@ -13,7 +13,7 @@ WIDTH, HEIGHT = 800, 600
 window = pygame.display.set_mode((WIDTH, HEIGHT), pygame.RESIZABLE)
 pygame.display.set_caption("Untitled")
 
-manager = pygame_gui.UIManager((WIDTH, HEIGHT))
+manager = manager = pygame_gui.UIManager((WIDTH, HEIGHT), 'theme.json')
 clock = pygame.time.Clock()
 running = True
 
