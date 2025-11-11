@@ -1,7 +1,7 @@
 {
     "button": {
         "colours": {
-            "normal_bg": "#2E8B57",
+            "normal_bg": "#002385",
             "hovered_bg": "#3CB371",
             "pressed_bg": "#006400"
         },
